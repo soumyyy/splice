@@ -1,0 +1,70 @@
+name: Splice
+options:
+  bundleIdPrefix: com.soumyamaheshwari
+  deploymentTarget:
+    iOS: "26.0"
+configFiles:
+  Debug: Config/Splice.xcconfig
+  Release: Config/Splice.xcconfig
+settings:
+  base:
+    DEVELOPMENT_TEAM: 4W769MPDJ6
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  SpliceCore:
+    path: SpliceCore
+targets:
+  Splice:
+    type: application
+    platform: iOS
+    sources:
+      - Splice
+      - Shared
+    dependencies:
+      - package: SpliceCore
+      - target: SpliceWidgets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.soumyamaheshwari.splice
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_FILE: Splice/Resources/Info.plist
+    info:
+      path: Splice/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Splice
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIBackgroundModes: [bluetooth-central, location]
+        NSSupportsLiveActivities: true
+        NSBluetoothAlwaysUsageDescription: Splice connects to your band to read your heart rate.
+        NSLocationWhenInUseUsageDescription: Splice records your route during workouts so Strava can show your map and pace.
+        NSLocationAlwaysAndWhenInUseUsageDescription: Lets workouts started from the Lock Screen record your route.
+        StravaClientID: $(STRAVA_CLIENT_ID)
+        StravaClientSecret: $(STRAVA_CLIENT_SECRET)
+  SpliceWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - SpliceWidgets
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.soumyamaheshwari.splice.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_FILE: SpliceWidgets/Info.plist
+    info:
+      path: SpliceWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Splice
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension

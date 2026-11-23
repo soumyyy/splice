@@ -1,0 +1,5 @@
+// Strava API keys live in Secrets.xcconfig, which is not committed.
+// Copy Secrets.example.xcconfig to Secrets.xcconfig and fill it in.
+STRAVA_CLIENT_ID =
+STRAVA_CLIENT_SECRET =
+#include? "Secrets.xcconfig"
