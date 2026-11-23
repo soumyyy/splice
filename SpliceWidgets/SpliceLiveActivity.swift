@@ -13,7 +13,7 @@ struct SpliceLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: SpliceActivityAttributes.self) { context in
       LockScreenView(state: context.state)
-        .activityBackgroundTint(Color.black.opacity(0.85))
+        .activityBackgroundTint(Color.black)
         .activitySystemActionForegroundColor(.white)
     } dynamicIsland: { context in
       let state = context.state
@@ -32,7 +32,7 @@ struct SpliceLiveActivity: Widget {
           ZoneStrip(zone: state.zone, live: state.bpm != nil)
         }
       } compactLeading: {
-        Image(systemName: "heart.fill").foregroundStyle(state.bpm == nil ? .gray : Color.zone(state.zone))
+        Image(systemName: "heart.fill").foregroundStyle(state.bpm == nil ? Color(hex: 0x8E8E93) : Color.zone(state.zone))
       } compactTrailing: {
         Text(state.bpm.map(String.init) ?? "--")
           .font(.body.weight(.semibold))
@@ -52,21 +52,18 @@ private struct LockScreenView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
-      HStack(alignment: .center) {
-        BPMLabel(state: state, size: 44)
+      HStack(alignment: .lastTextBaseline) {
+        BPMLabel(state: state, size: 54)
         Spacer()
-        if state.bpm != nil {
-          Text("Zone \(state.zone + 1) · \(ZonePalette.names[state.zone])")
-            .font(.subheadline.weight(.semibold))
-            .foregroundStyle(Color.zone(state.zone))
-        } else {
-          Text("Band not streaming").font(.caption).foregroundStyle(.secondary)
-        }
+        Text(state.bpm == nil ? "Band not streaming" : "Zone \(state.zone + 1), \(ZonePalette.names[state.zone])")
+          .font(.subheadline)
+          .foregroundStyle(Color(hex: 0x8E8E93))
+          .padding(.bottom, 6)
       }
       ZoneStrip(zone: state.zone, live: state.bpm != nil)
     }
     .padding(16)
-    .foregroundStyle(.white)
+    .foregroundStyle(Color(hex: 0xF5F5F7))
   }
 }
 
@@ -75,15 +72,13 @@ private struct BPMLabel: View {
   let size: CGFloat
 
   var body: some View {
-    HStack(alignment: .firstTextBaseline, spacing: 4) {
-      Image(systemName: "heart.fill")
-        .font(.system(size: size * 0.5))
-        .foregroundStyle(state.bpm == nil ? .gray : Color.zone(state.zone))
+    HStack(alignment: .lastTextBaseline, spacing: 5) {
       Text(state.bpm.map(String.init) ?? "--")
-        .font(.system(size: size, weight: .bold, design: .rounded))
+        .font(.system(size: size, weight: .semibold).width(.compressed))
         .monospacedDigit()
+        .foregroundStyle(state.bpm == nil ? Color(hex: 0x8E8E93) : Color.zone(state.zone))
         .contentTransition(.numericText())
-      Text("bpm").font(.caption).foregroundStyle(.secondary)
+      Text("bpm").font(.subheadline.weight(.medium))
     }
   }
 }
@@ -93,12 +88,13 @@ private struct ZoneStrip: View {
   let live: Bool
 
   var body: some View {
-    HStack(spacing: 3) {
+    HStack(spacing: 2) {
       ForEach(0..<5) { i in
-        Capsule()
-          .fill(Color.zone(i).opacity(live && i == zone ? 1 : 0.25))
-          .frame(height: live && i == zone ? 7 : 4)
+        Rectangle()
+          .fill(Color.zone(i).opacity(live && i == zone ? 1 : 0.35))
+          .frame(height: live && i == zone ? 4 : 2)
       }
     }
+    .frame(height: 4)
   }
 }

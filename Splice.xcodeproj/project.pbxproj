@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17919D793CA7B0FA1CC0FFF9 /* HistoryPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E48E0C15DBE3E0FCB87595A /* HistoryPanel.swift */; };
 		1A26904CA8EB29EA426DAD7E /* SharedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4B661EDC036510B67640E /* SharedStyle.swift */; };
 		3D2404E3AFBA4F274AC38A3C /* SpliceWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CC296F4C7D20E02377245781 /* SpliceWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		408D9E2A68632E8C612A843B /* SpliceCore in Frameworks */ = {isa = PBXBuildFile; productRef = B7CF66E0A9DD89D5866F0AC3 /* SpliceCore */; };
@@ -16,15 +17,14 @@
 		6A8EE9B5E45EEE0D6EC28DFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954D4812D6DA6F9081BF293A /* Assets.xcassets */; };
 		7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B494A663F2F1AA78519FD /* AppModel.swift */; };
 		85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C686573DD33A4B7B91245 /* BandClient.swift */; };
-		8F1A3231552AC0254C7F946E /* LiveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8DAD5BDB4593A215015242 /* LiveCard.swift */; };
 		915A4DDC72402AEA6693937C /* SharedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4B661EDC036510B67640E /* SharedStyle.swift */; };
 		92CA6EE7EEDC4284C19311F2 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = B769533515B3BDAF21A3B4E7 /* Components.swift */; };
 		9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFF704DB06241893FC9512 /* LiveActivityController.swift */; };
 		AFF76759017A78DBE6ACF891 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB227C7D312EC77FD8AF5 /* PairingSheet.swift */; };
-		DB07A3B82CEC4649B787E84F /* BandCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A681C4C32B5360DF89C63E37 /* BandCard.swift */; };
+		D88E9EB4B3C445C557ADA519 /* LiveHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B057AD7AF614362AB53AB8F /* LiveHeartRate.swift */; };
+		DF12A54B0935CCC899304270 /* BandRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0B410E252B16FB49B32113 /* BandRow.swift */; };
 		DF2E713A5BAC649E0D7C9194 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDC922782433063FA6E6FF /* HistoryStore.swift */; };
 		EC88B885564F128B7E33D5AD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294D4B055C0D8C947C7CBF6 /* HomeView.swift */; };
-		ED55BF19D34F41809A051E01 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */; };
 		F25C18E171A9879602052887 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DAA5CFCB3973A009E19510 /* Theme.swift */; };
 		F2C64D2F21F8BB7F74BF7EE6 /* SpliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A25A8BD553442484C164F9 /* SpliceApp.swift */; };
 		F34A06FD2E6E77F1C8905AFC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456802D37CDE5A1016F6F690 /* SettingsView.swift */; };
@@ -57,21 +57,21 @@
 /* Begin PBXFileReference section */
 		02DAA5CFCB3973A009E19510 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		076C686573DD33A4B7B91245 /* BandClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandClient.swift; sourceTree = "<group>"; };
+		2B057AD7AF614362AB53AB8F /* LiveHeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveHeartRate.swift; sourceTree = "<group>"; };
 		2E350FD3D0EA9DC160B96A41 /* SpliceLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceLiveActivity.swift; sourceTree = "<group>"; };
+		2E48E0C15DBE3E0FCB87595A /* HistoryPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPanel.swift; sourceTree = "<group>"; };
 		3FBDC922782433063FA6E6FF /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		456802D37CDE5A1016F6F690 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		48878C26454D42408892FAA2 /* SpliceCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SpliceCore; path = SpliceCore; sourceTree = SOURCE_ROOT; };
 		54E4B661EDC036510B67640E /* SharedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStyle.swift; sourceTree = "<group>"; };
+		5F0B410E252B16FB49B32113 /* BandRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandRow.swift; sourceTree = "<group>"; };
 		64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceActivity.swift; sourceTree = "<group>"; };
 		7F15304898A6EAE15BDCA897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		87A25A8BD553442484C164F9 /* SpliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceApp.swift; sourceTree = "<group>"; };
 		954D4812D6DA6F9081BF293A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0DA923BED62258075DF8A49 /* Splice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C7DC31515F2674AE14A0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A681C4C32B5360DF89C63E37 /* BandCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandCard.swift; sourceTree = "<group>"; };
-		AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
 		B769533515B3BDAF21A3B4E7 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
-		BE8DAD5BDB4593A215015242 /* LiveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCard.swift; sourceTree = "<group>"; };
 		CC296F4C7D20E02377245781 /* SpliceWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SpliceWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8B494A663F2F1AA78519FD /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		E4DDB227C7D312EC77FD8AF5 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
@@ -222,10 +222,10 @@
 		DA6BE9B4DB0B89DE7BE9E5D1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A681C4C32B5360DF89C63E37 /* BandCard.swift */,
-				AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */,
+				5F0B410E252B16FB49B32113 /* BandRow.swift */,
+				2E48E0C15DBE3E0FCB87595A /* HistoryPanel.swift */,
 				F294D4B055C0D8C947C7CBF6 /* HomeView.swift */,
-				BE8DAD5BDB4593A215015242 /* LiveCard.swift */,
+				2B057AD7AF614362AB53AB8F /* LiveHeartRate.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -350,14 +350,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */,
-				DB07A3B82CEC4649B787E84F /* BandCard.swift in Sources */,
 				85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */,
+				DF12A54B0935CCC899304270 /* BandRow.swift in Sources */,
 				92CA6EE7EEDC4284C19311F2 /* Components.swift in Sources */,
-				ED55BF19D34F41809A051E01 /* HistoryCard.swift in Sources */,
+				17919D793CA7B0FA1CC0FFF9 /* HistoryPanel.swift in Sources */,
 				DF2E713A5BAC649E0D7C9194 /* HistoryStore.swift in Sources */,
 				EC88B885564F128B7E33D5AD /* HomeView.swift in Sources */,
 				9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */,
-				8F1A3231552AC0254C7F946E /* LiveCard.swift in Sources */,
+				D88E9EB4B3C445C557ADA519 /* LiveHeartRate.swift in Sources */,
 				AFF76759017A78DBE6ACF891 /* PairingSheet.swift in Sources */,
 				F34A06FD2E6E77F1C8905AFC /* SettingsView.swift in Sources */,
 				1A26904CA8EB29EA426DAD7E /* SharedStyle.swift in Sources */,

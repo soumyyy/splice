@@ -14,6 +14,7 @@ struct SpliceActivityAttributes: ActivityAttributes {
 
 enum ZonePalette {
   /// Recovery, Endurance, Tempo, Threshold, Anaerobic.
-  static let hex: [UInt32] = [0x8E8E93, 0x3A8DFF, 0x34C759, 0xFF9F0A, 0xFF375F]
+  /// Zone 1 is near-white so a resting heart rate reads as alive, not disabled.
+  static let hex: [UInt32] = [0xE5E5EA, 0x3A8DFF, 0x34C759, 0xFF9F0A, 0xFF375F]
   static let names = ["Recovery", "Endurance", "Tempo", "Threshold", "Anaerobic"]
 }

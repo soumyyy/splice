@@ -1,62 +1,87 @@
 import SpliceCore
 import SwiftUI
 
-/// Rounded dark panel used for every section on the home screen.
-struct Card<Content: View>: View {
-  var title: String?
+/// A section outlined by a hairline border. No fill: the background stays true black.
+struct Panel<Content: View>: View {
+  var padding: CGFloat = 16
   @ViewBuilder var content: Content
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 12) {
-      if let title {
-        Text(title.uppercased())
-          .font(.caption.weight(.semibold))
-          .foregroundStyle(.secondary)
-      }
-      content
-    }
-    .padding(16)
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .background(Color.spliceCard, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+    VStack(alignment: .leading, spacing: 14) { content }
+      .padding(padding)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(Color.hairline, lineWidth: 1))
   }
 }
 
-/// Five capsules, one per zone, with the active one highlighted.
-struct ZoneBar: View {
-  let active: Int?
+/// A scale from 50% to 100% of max heart rate, coloured by zone, with a marker at the current bpm.
+struct ZoneScale: View {
+  let zones: HeartRateZones
+  let bpm: Int?
+
+  private let lowerFraction = 0.5
 
   var body: some View {
-    HStack(spacing: 4) {
-      ForEach(0..<5) { i in
-        Capsule()
-          .fill(Color.zone(i).opacity(i == active ? 1 : 0.22))
-          .frame(height: i == active ? 10 : 6)
+    GeometryReader { geo in
+      let width = geo.size.width
+      ZStack(alignment: .leading) {
+        HStack(spacing: 2) {
+          ForEach(0..<5) { i in
+            Rectangle()
+              .fill(Color.zone(i).opacity(isActive(i) ? 1 : 0.35))
+              .frame(width: max(0, segmentWidth(i, total: width) - 2), height: isActive(i) ? 4 : 2)
+          }
+        }
+        .frame(height: 12)
+        if let x = markerX(width: width) {
+          Capsule()
+            .fill(Color.textPrimary)
+            .frame(width: 3, height: 14)
+            .offset(x: x - 1.5)
+            .animation(.snappy, value: bpm)
+        }
       }
     }
-    .frame(height: 10)
-    .animation(.snappy, value: active)
+    .frame(height: 14)
+    .accessibilityElement()
+    .accessibilityLabel(bpm.map { "Zone \(zones.zone(for: $0) + 1)" } ?? "No heart rate")
+  }
+
+  private func isActive(_ zone: Int) -> Bool {
+    bpm.map { zones.zone(for: $0) == zone } ?? false
+  }
+
+  /// Zone 1 covers 50–60% on this scale; the rest follow Strava's 10% steps.
+  private func segmentWidth(_ zone: Int, total: CGFloat) -> CGFloat {
+    total * 0.1 / (1 - lowerFraction)
+  }
+
+  private func markerX(width: CGFloat) -> CGFloat? {
+    guard let bpm else { return nil }
+    let fraction = Double(bpm) / Double(zones.maxHeartRate)
+    let clamped = min(1, max(lowerFraction, fraction))
+    return width * (clamped - lowerFraction) / (1 - lowerFraction)
   }
 }
 
-/// Small label-over-value figure, e.g. "Avg / 92".
-struct StatTile: View {
-  let title: String
+/// Small figure with its label underneath, e.g. "62 / Low".
+struct Figure: View {
   let value: String
-  var unit: String? = "bpm"
+  let label: String
 
   var body: some View {
     VStack(alignment: .leading, spacing: 2) {
-      Text(title).font(.caption).foregroundStyle(.secondary)
-      HStack(alignment: .firstTextBaseline, spacing: 3) {
-        Text(value).font(.title3.weight(.semibold)).monospacedDigit()
-        if let unit { Text(unit).font(.caption2).foregroundStyle(.secondary) }
-      }
+      Text(value)
+        .font(.title2.weight(.semibold).width(.condensed))
+        .monospacedDigit()
+        .foregroundStyle(Color.textPrimary)
+      Text(label).font(.footnote).foregroundStyle(Color.textSecondary)
     }
     .frame(maxWidth: .infinity, alignment: .leading)
   }
 }
 
-/// Horizontal bar split by time in each zone, with a legend.
+/// Time in each zone as one segmented line with durations underneath.
 struct ZoneDistribution: View {
   let minutes: [Int]
 
@@ -71,19 +96,22 @@ struct ZoneDistribution: View {
               .frame(width: max(3, (geo.size.width - 8) * CGFloat(minutes[i]) / CGFloat(total)))
           }
         }
-        .clipShape(Capsule())
       }
-      .frame(height: 10)
+      .frame(height: 4)
       HStack(spacing: 0) {
         ForEach(0..<5) { i in
           VStack(alignment: .leading, spacing: 2) {
-            Text("Z\(i + 1)").font(.caption2.weight(.bold)).foregroundStyle(Color.zone(i))
-            Text(Self.format(minutes[i])).font(.caption2).monospacedDigit().foregroundStyle(.secondary)
+            Text(Self.format(minutes[i]))
+              .font(.subheadline.weight(.medium))
+              .monospacedDigit()
+              .foregroundStyle(minutes[i] > 0 ? Color.textPrimary : Color.textSecondary)
+            Text("Zone \(i + 1)").font(.caption2).foregroundStyle(Color.zone(i))
           }
           .frame(maxWidth: .infinity, alignment: .leading)
         }
       }
     }
+    .accessibilityElement(children: .combine)
   }
 
   static func format(_ minutes: Int) -> String {

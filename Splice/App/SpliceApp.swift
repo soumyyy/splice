@@ -11,7 +11,7 @@ struct SpliceApp: App {
       HomeView()
         .environment(model)
         .preferredColorScheme(.dark)
-        .tint(.spliceAccent)
+        .tint(Color.textPrimary)
     }
     .onChange(of: scenePhase) { _, phase in
       switch phase {

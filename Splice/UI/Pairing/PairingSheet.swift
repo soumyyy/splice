@@ -9,10 +9,10 @@ struct PairingSheet: View {
     VStack(spacing: 20) {
       Spacer(minLength: 8)
       ZStack {
-        Circle().fill(Color.spliceAccent.opacity(0.12)).frame(width: 120, height: 120)
+        Circle().strokeBorder(Color.hairline, lineWidth: 1).frame(width: 120, height: 120)
         Image(systemName: model.band.status == .streaming ? "checkmark.circle.fill" : "applewatch.radiowaves.left.and.right")
           .font(.system(size: 48))
-          .foregroundStyle(model.band.status == .streaming ? .green : Color.spliceAccent)
+          .foregroundStyle(model.band.status == .streaming ? Color.zone(2) : Color.textPrimary)
           .symbolEffect(.variableColor.iterative, isActive: model.band.status != .streaming)
           .contentTransition(.symbolEffect(.replace))
       }
@@ -20,7 +20,7 @@ struct PairingSheet: View {
         Text(title).font(.title2.weight(.bold))
         Text(subtitle)
           .font(.subheadline)
-          .foregroundStyle(.secondary)
+          .foregroundStyle(Color.textSecondary)
           .multilineTextAlignment(.center)
       }
       if model.band.searchTimedOut {
@@ -30,9 +30,10 @@ struct PairingSheet: View {
           tip("If it still won't connect, turn Bluetooth off and on.")
         }
         .padding()
-        .background(Color.spliceCard, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(Color.hairline))
         Button("Try again") { model.band.reconnectNow() }
-          .buttonStyle(.borderedProminent)
+          .buttonStyle(.bordered)
+          .tint(Color.textPrimary)
       } else if model.band.status != .streaming {
         ProgressView()
       }

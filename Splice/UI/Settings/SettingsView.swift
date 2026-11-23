@@ -18,15 +18,18 @@ struct SettingsView: View {
             LabeledContent {
               Text(range(i)).monospacedDigit()
             } label: {
-              Label("Z\(i + 1) \(HeartRateZones.names[i])", systemImage: "circle.fill")
-                .foregroundStyle(Color.zone(i))
+              HStack(spacing: 10) {
+                Rectangle().fill(Color.zone(i)).frame(width: 3, height: 16)
+                Text("Zone \(i + 1), \(HeartRateZones.names[i])")
+              }
             }
           }
         } header: {
           Text("Zones")
         } footer: {
-          Text("Use the same max heart rate as in Strava (Settings → My Performance) so zones match.")
+          Text("Use the same max heart rate as in Strava (Settings › My Performance) so zones match.")
         }
+        .listRowBackground(Color.black)
 
         Section("Band") {
           LabeledContent("Band", value: model.band.hasSavedBand ? model.band.displayName : "Not paired")
@@ -43,7 +46,11 @@ struct SettingsView: View {
             Button("Forget band", role: .destructive) { confirmForget = true }
           }
         }
+        .listRowBackground(Color.black)
       }
+      .listRowSeparatorTint(Color.hairline)
+      .scrollContentBackground(.hidden)
+      .background(Color.black)
       .navigationTitle("Settings")
       .toolbar {
         ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
