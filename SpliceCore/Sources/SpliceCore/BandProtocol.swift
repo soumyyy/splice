@@ -29,6 +29,9 @@ public enum BandProtocol {
   public enum Command: UInt8, Sendable {
     /// Payload `[1]` starts a 1 Hz heart-rate stream on the data characteristic, `[0]` stops it.
     case toggleRealtimeHeartRate = 3
+    /// Payload `[1]` turns on the standard Bluetooth heart-rate profile (0x180D / 0x2A37),
+    /// so apps like Strava can pair with the band as a normal heart-rate sensor.
+    case toggleStandardHeartRateBroadcast = 14
   }
 
   public static let headerLength = 8

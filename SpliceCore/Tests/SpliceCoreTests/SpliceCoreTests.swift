@@ -24,6 +24,15 @@ private let hrOnAck = "aa010c00010027112476034101000000e6321dcc"
     #expect(frame == data("aa0108000001e671234103016e5bb1be"))
   }
 
+  @Test func encodesBroadcastCommandExactlyAsTheBandAccepted() {
+    let frame = BandProtocol.commandFrame(sequence: 65, command: .toggleStandardHeartRateBroadcast, data: [1])
+    #expect(frame == data("aa0108000001e67123410e0123251f0b"))
+    // The band acknowledged it with status 1.
+    let ack = BandProtocol.commandResponse(data("aa010c000100271124910e4101000000a1b984b6"))
+    #expect(ack?.command == 14)
+    #expect(ack?.accepted == true)
+  }
+
   @Test func decodesBpmTimestampAndBeatIntervals() throws {
     let reading = try #require(BandProtocol.decodeRealtimeHeartRate(data(realtimeTwoRR)))
     #expect(reading.bpm == 100)

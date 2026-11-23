@@ -121,6 +121,8 @@ final class BandClient: NSObject {
     guard wantsStream, let band, let commandCharacteristic else { return }
     lastStreamRequestAt = Date()
     band.writeValue(BandProtocol.helloFrame, for: commandCharacteristic, type: writeType(commandCharacteristic))
+    // Keep the band visible to Strava and other apps as a standard heart-rate sensor.
+    send(.toggleStandardHeartRateBroadcast, [1])
     send(.toggleRealtimeHeartRate, [1])
     log.info("requested realtime heart rate")
   }
