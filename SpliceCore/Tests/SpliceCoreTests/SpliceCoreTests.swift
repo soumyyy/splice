@@ -84,3 +84,67 @@ private let hrOnAck = "aa010c00010027112476034101000000e6321dcc"
     #expect(zones.zone(for: 200) == 4)
   }
 }
+
+@Suite struct HistoryTests {
+  let t0 = Date(timeIntervalSince1970: 1_795_455_900) // on a quarter-hour, so 15-minute buckets line up
+
+  @Test func aggregatesSamplesPerMinute() {
+    var h = HeartRateHistory()
+    for i in 0..<60 { h.add(bpm: 100 + i % 3, at: t0.addingTimeInterval(Double(i))) }
+    h.add(bpm: 150, at: t0.addingTimeInterval(60))
+    #expect(h.minutes.count == 2)
+    #expect(h.minutes[0].min == 100)
+    #expect(h.minutes[0].max == 102)
+    #expect(h.minutes[0].count == 60)
+    #expect(h.minutes[1].average == 150)
+  }
+
+  @Test func ignoresOutOfOrderSamples() {
+    var h = HeartRateHistory()
+    h.add(bpm: 100, at: t0.addingTimeInterval(120))
+    h.add(bpm: 200, at: t0)
+    #expect(h.minutes.count == 1)
+    #expect(h.minutes[0].max == 100)
+  }
+
+  @Test func prunesOlderThanAWeek() {
+    var h = HeartRateHistory()
+    h.add(bpm: 90, at: t0)
+    h.add(bpm: 95, at: t0.addingTimeInterval(6 * 86400))
+    h.prune(now: t0.addingTimeInterval(7 * 86400 + 60))
+    #expect(h.minutes.count == 1)
+    #expect(h.minutes[0].min == 95)
+  }
+
+  @Test func bucketsMergeExactlyAndSplitOnGaps() {
+    var h = HeartRateHistory()
+    for m in 0..<30 { h.add(bpm: 100 + m, at: t0.addingTimeInterval(Double(m) * 60)) }
+    // Two hours of nothing, then one more minute.
+    h.add(bpm: 80, at: t0.addingTimeInterval(150 * 60))
+    let buckets = h.buckets(from: t0, to: t0.addingTimeInterval(4 * 3600), bucketSize: 15 * 60)
+    #expect(buckets.count == 3)
+    #expect(buckets[0].min == 100 && buckets[0].max == 114)
+    #expect(buckets[0].average == 107)
+    #expect(buckets[0].segment == buckets[1].segment)
+    #expect(buckets[2].segment == buckets[1].segment + 1)
+  }
+
+  @Test func statsCountMinutesPerZone() throws {
+    var h = HeartRateHistory()
+    h.add(bpm: 100, at: t0)                         // Z1 at max 190
+    h.add(bpm: 140, at: t0.addingTimeInterval(60))  // Z3
+    h.add(bpm: 140, at: t0.addingTimeInterval(120)) // Z3
+    let stats = try #require(h.stats(from: t0, to: t0.addingTimeInterval(180), zones: HeartRateZones(maxHeartRate: 190)))
+    #expect(stats.low == 100)
+    #expect(stats.high == 140)
+    #expect(stats.average == 127)
+    #expect(stats.minutesInZones == [1, 0, 2, 0, 0])
+  }
+
+  @Test func roundTripsThroughJSON() throws {
+    var h = HeartRateHistory()
+    h.add(bpm: 72, at: t0)
+    let decoded = try JSONDecoder().decode(HeartRateHistory.self, from: JSONEncoder().encode(h))
+    #expect(decoded == h)
+  }
+}
