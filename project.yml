@@ -3,9 +3,6 @@ options:
   bundleIdPrefix: com.soumyamaheshwari
   deploymentTarget:
     iOS: "26.0"
-configFiles:
-  Debug: Config/Splice.xcconfig
-  Release: Config/Splice.xcconfig
 settings:
   base:
     DEVELOPMENT_TEAM: 4W769MPDJ6
@@ -42,13 +39,9 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
-        UIBackgroundModes: [bluetooth-central, location]
+        UIBackgroundModes: [bluetooth-central]
         NSSupportsLiveActivities: true
         NSBluetoothAlwaysUsageDescription: Splice connects to your band to read your heart rate.
-        NSLocationWhenInUseUsageDescription: Splice records your route during workouts so Strava can show your map and pace.
-        NSLocationAlwaysAndWhenInUseUsageDescription: Lets workouts started from the Lock Screen record your route.
-        StravaClientID: $(STRAVA_CLIENT_ID)
-        StravaClientSecret: $(STRAVA_CLIENT_SECRET)
   SpliceWidgets:
     type: app-extension
     platform: iOS

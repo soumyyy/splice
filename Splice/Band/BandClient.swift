@@ -26,9 +26,13 @@ final class BandClient: NSObject {
   /// Called for every decoded reading with the phone time it arrived.
   @ObservationIgnored var onReading: ((HeartRateReading, Date) -> Void)?
 
-  /// When false the band is connected but asked to stop streaming (saves band battery).
-  var wantsStream = true {
-    didSet { wantsStream ? startStream() : stopStream() }
+  /// The user's streaming switch. When off, the band stops broadcasting (saves band battery).
+  var wantsStream = UserDefaults.standard.object(forKey: "splice.streaming") as? Bool ?? true {
+    didSet {
+      guard wantsStream != oldValue else { return }
+      UserDefaults.standard.set(wantsStream, forKey: "splice.streaming")
+      wantsStream ? startStream() : stopStream()
+    }
   }
 
   private let log = Logger(subsystem: "com.soumyamaheshwari.splice", category: "band")
@@ -129,6 +133,8 @@ final class BandClient: NSObject {
 
   private func stopStream() {
     send(.toggleRealtimeHeartRate, [0])
+    send(.toggleStandardHeartRateBroadcast, [0])
+    lastReadingAt = nil
     if status == .streaming { status = .connected }
   }
 
@@ -142,7 +148,7 @@ final class BandClient: NSObject {
   }
 
   private func handleData(_ value: Data) {
-    guard let reading = BandProtocol.decodeRealtimeHeartRate(value) else { return }
+    guard wantsStream, let reading = BandProtocol.decodeRealtimeHeartRate(value) else { return }
     let now = Date()
     lastReadingAt = now
     if status != .streaming { status = .streaming }

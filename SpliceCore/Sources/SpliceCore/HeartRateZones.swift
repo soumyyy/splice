@@ -21,15 +21,14 @@ public struct HeartRateZones: Sendable, Equatable {
   public var thresholds: [Int] {
     Self.lowerBounds.map { Int((Double(maxHeartRate) * $0).rounded()) }
   }
+}
 
-  /// Seconds spent in each zone. Each sample holds until the next one, capped at 5 s so gaps don't inflate zones.
-  public func timeInZones(_ samples: [HeartRateSample], endedAt: Date?) -> [TimeInterval] {
-    var totals = Array(repeating: 0.0, count: 5)
-    for (i, sample) in samples.enumerated() {
-      let next = i + 1 < samples.count ? samples[i + 1].time : (endedAt ?? sample.time.addingTimeInterval(1))
-      let span = min(5, max(0, next.timeIntervalSince(sample.time)))
-      totals[zone(for: sample.bpm)] += span
-    }
-    return totals
+public struct HeartRateSample: Sendable, Equatable {
+  public let time: Date
+  public let bpm: Int
+
+  public init(time: Date, bpm: Int) {
+    self.time = time
+    self.bpm = bpm
   }
 }

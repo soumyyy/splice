@@ -28,17 +28,6 @@ struct SettingsView: View {
           Text("Use the same max heart rate as in Strava (Settings → My Performance) so zones match.")
         }
 
-        Section("Strava") {
-          if model.stravaConnected {
-            LabeledContent("Connected", value: model.stravaAthlete ?? "Yes")
-            Button("Disconnect", role: .destructive) { model.disconnectStrava() }
-          } else if model.stravaConfigured {
-            Button("Connect Strava") { Task { await model.connectStrava() } }
-          } else {
-            Text("No Strava API keys in this build.").foregroundStyle(.secondary)
-          }
-        }
-
         Section("Band") {
           LabeledContent("Name", value: model.band.bandName ?? "Not paired")
           if let battery = model.band.batteryPercent {

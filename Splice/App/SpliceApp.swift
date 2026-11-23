@@ -1,5 +1,4 @@
 import SwiftUI
-import UserNotifications
 
 @main
 struct SpliceApp: App {
@@ -20,29 +19,10 @@ struct SpliceApp: App {
   }
 }
 
-final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+final class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    UNUserNotificationCenter.current().delegate = self
     // Creating the model here means a background relaunch (Bluetooth restore) reconnects the band.
     _ = MainActor.assumeIsolated { AppModel.shared }
     return true
-  }
-
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-    [.banner, .sound]
-  }
-
-  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-    guard let id = response.notification.request.content.userInfo["stravaActivityID"] as? Int64 else { return }
-    await MainActor.run { StravaLink.open(activityID: id) }
-  }
-}
-
-enum StravaLink {
-  /// The https link opens the Strava app when it's installed.
-  @MainActor static func open(activityID: Int64) {
-    if let url = URL(string: "https://www.strava.com/activities/\(activityID)") {
-      UIApplication.shared.open(url)
-    }
   }
 }

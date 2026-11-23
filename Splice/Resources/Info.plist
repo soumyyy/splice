@@ -22,16 +22,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Splice connects to your band to read your heart rate.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Lets workouts started from the Lock Screen record your route.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Splice records your route during workouts so Strava can show your map and pace.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
-	<key>StravaClientID</key>
-	<string>$(STRAVA_CLIENT_ID)</string>
-	<key>StravaClientSecret</key>
-	<string>$(STRAVA_CLIENT_SECRET)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -40,7 +32,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
-		<string>location</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict/>

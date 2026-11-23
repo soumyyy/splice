@@ -11,18 +11,10 @@ struct RootView: View {
       ScrollView {
         VStack(spacing: 16) {
           BandStatusRow()
-          HeartRateHero()
-          if model.activeWorkout != nil {
-            ActiveWorkoutCard()
-          } else {
-            StartCard()
-          }
-          if !model.stravaConnected {
-            ConnectStravaCard()
-          }
-          if let latest = model.workouts.first {
-            NavigationLink(value: latest.id) { WorkoutRow(workout: latest) }
-              .buttonStyle(.plain)
+          StreamToggle()
+          if model.isStreaming {
+            HeartRateHero()
+            StravaHint()
           }
         }
         .padding(.horizontal)
@@ -31,18 +23,11 @@ struct RootView: View {
       .background(Color.black)
       .navigationTitle("Splice")
       .toolbar {
-        ToolbarItem(placement: .topBarLeading) {
-          NavigationLink { HistoryView() } label: { Image(systemName: "list.bullet") }
-        }
         ToolbarItem(placement: .topBarTrailing) {
           Button { showSettings = true } label: { Image(systemName: "gearshape") }
         }
       }
-      .navigationDestination(for: UUID.self) { id in WorkoutDetailView(workoutID: id) }
       .sheet(isPresented: $showSettings) { SettingsView() }
-      .task {
-        model.requestPermissions()
-      }
     }
   }
 }
@@ -77,8 +62,29 @@ struct BandStatusRow: View {
     case .unauthorized: "Allow Bluetooth in Settings"
     case .searching: "Looking for your band…"
     case .connecting: "Connecting to \(model.band.bandName ?? "band")…"
-    case .connected: "Connected, starting heart rate…"
+    case .connected: model.isStreaming ? "Connected, starting heart rate…" : "Connected"
     case .streaming: model.band.bandName ?? "Band"
+    }
+  }
+}
+
+struct StreamToggle: View {
+  @Environment(AppModel.self) private var model
+
+  var body: some View {
+    @Bindable var model = model
+    Card {
+      Toggle(isOn: $model.isStreaming) {
+        VStack(alignment: .leading, spacing: 4) {
+          Text("Stream heart rate").font(.headline)
+          Text(model.isStreaming
+               ? "Your band is broadcasting. Strava can use it as a sensor."
+               : "Turn on to see your heart rate and broadcast it to Strava.")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
+      }
+      .tint(.spliceAccent)
     }
   }
 }
@@ -92,16 +98,16 @@ struct HeartRateHero: View {
         HStack(alignment: .firstTextBaseline, spacing: 6) {
           Image(systemName: "heart.fill")
             .font(.title)
-            .foregroundStyle(zoneColor)
-            .symbolEffect(.pulse, isActive: model.band.status == .streaming)
-          Text(model.band.status == .streaming ? model.bpm.map(String.init) ?? "--" : "--")
+            .foregroundStyle(model.currentZone.map(Color.zone) ?? .secondary)
+            .symbolEffect(.pulse, isActive: model.isLive)
+          Text(model.isLive ? model.bpm.map(String.init) ?? "--" : "--")
             .font(.system(size: 88, weight: .bold, design: .rounded))
             .monospacedDigit()
             .contentTransition(.numericText())
             .animation(.snappy, value: model.bpm)
           Text("bpm").font(.title3).foregroundStyle(.secondary)
         }
-        if let zone = model.currentZone, model.band.status == .streaming {
+        if let zone = model.currentZone, model.isLive {
           ZoneBar(active: zone)
           Text("Zone \(zone + 1) · \(HeartRateZones.names[zone])")
             .font(.subheadline.weight(.semibold))
@@ -120,10 +126,6 @@ struct HeartRateHero: View {
       }
     }
   }
-
-  private var zoneColor: Color {
-    model.currentZone.map(Color.zone) ?? .secondary
-  }
 }
 
 struct ZoneBar: View {
@@ -140,117 +142,17 @@ struct ZoneBar: View {
   }
 }
 
-struct StartCard: View {
-  @Environment(AppModel.self) private var model
-
-  var body: some View {
-    @Bindable var model = model
-    Card {
-      VStack(alignment: .leading, spacing: 14) {
-        Picker("Sport", selection: $model.sport) {
-          ForEach(Sport.allCases) { Text($0.title).tag($0) }
-        }
-        .pickerStyle(.segmented)
-        Button {
-          model.startWorkout()
-        } label: {
-          Label("Start \(model.sport.title)", systemImage: "play.fill")
-            .font(.title3.weight(.semibold))
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 8)
-        }
-        .buttonStyle(.borderedProminent)
-        Text(model.stravaConnected
-             ? "Uploads to Strava with heart rate when you finish."
-             : "Connect Strava below to upload automatically.")
-          .font(.footnote)
-          .foregroundStyle(.secondary)
-      }
-    }
-  }
-}
-
-struct ActiveWorkoutCard: View {
-  @Environment(AppModel.self) private var model
-  @State private var confirmDiscard = false
-
-  var body: some View {
-    if let workout = model.activeWorkout {
-      Card {
-        VStack(alignment: .leading, spacing: 14) {
-          HStack {
-            Text(workout.sport.title.uppercased())
-              .font(.caption.weight(.bold))
-              .foregroundStyle(Color.spliceAccent)
-            Spacer()
-            Text(workout.startedAt, style: .timer)
-              .font(.title2.weight(.semibold))
-              .monospacedDigit()
-          }
-          HStack {
-            Stat(title: "Avg HR", value: workout.averageHeartRate.map { "\($0)" } ?? "--")
-            Stat(title: "Max HR", value: workout.maxHeartRate.map { "\($0)" } ?? "--")
-            if workout.sport.usesGPS {
-              Stat(title: "Distance", value: model.activeDistance.kilometers)
-            }
-          }
-          Button {
-            model.endWorkout()
-          } label: {
-            Label("Finish & Upload", systemImage: "stop.fill")
-              .font(.title3.weight(.semibold))
-              .frame(maxWidth: .infinity)
-              .padding(.vertical, 8)
-          }
-          .buttonStyle(.borderedProminent)
-          .tint(.red)
-          Button("Discard", role: .destructive) { confirmDiscard = true }
-            .font(.footnote)
-            .frame(maxWidth: .infinity)
-        }
-      }
-      .confirmationDialog("Discard this workout?", isPresented: $confirmDiscard) {
-        Button("Discard", role: .destructive) { model.discardWorkout() }
-      }
-    }
-  }
-}
-
-struct Stat: View {
-  let title: String
-  let value: String
-  var body: some View {
-    VStack(alignment: .leading, spacing: 2) {
-      Text(title).font(.caption).foregroundStyle(.secondary)
-      Text(value).font(.title3.weight(.semibold)).monospacedDigit()
-    }
-    .frame(maxWidth: .infinity, alignment: .leading)
-  }
-}
-
-struct ConnectStravaCard: View {
+struct StravaHint: View {
   @Environment(AppModel.self) private var model
 
   var body: some View {
     Card {
-      VStack(alignment: .leading, spacing: 10) {
-        Label("Connect Strava", systemImage: "arrow.up.forward.app")
+      VStack(alignment: .leading, spacing: 8) {
+        Label("Use it in Strava", systemImage: "sensor.tag.radiowaves.forward")
           .font(.headline)
-        Text("Finished workouts upload with heart rate and zones, no taps needed.")
+        Text("In Strava, tap Record, then the sensor icon, then Heart Rate, and pick \(model.band.bandName ?? "your WHOOP"). Pair once; Strava reconnects on its own after that.")
           .font(.subheadline)
           .foregroundStyle(.secondary)
-        if model.stravaConfigured {
-          Button("Connect") { Task { await model.connectStrava() } }
-            .buttonStyle(.borderedProminent)
-            .tint(Color.stravaOrange)
-        } else {
-          Text("This build has no Strava API keys yet.")
-            .font(.footnote)
-            .foregroundStyle(.orange)
-        }
-        if let error = model.stravaError {
-          Text(error).font(.footnote).foregroundStyle(.red)
-        }
       }
     }
   }

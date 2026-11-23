@@ -1,5 +1,4 @@
 import ActivityKit
-import AppIntents
 import SwiftUI
 import WidgetKit
 
@@ -23,18 +22,14 @@ struct SpliceLiveActivity: Widget {
           BPMLabel(state: state, size: 36)
         }
         DynamicIslandExpandedRegion(.trailing) {
-          if let start = state.workoutStartedAt {
-            Text(start, style: .timer)
-              .font(.title3.weight(.semibold))
-              .monospacedDigit()
-              .multilineTextAlignment(.trailing)
+          if state.bpm != nil {
+            Text(ZonePalette.names[state.zone])
+              .font(.subheadline.weight(.semibold))
+              .foregroundStyle(Color.zone(state.zone))
           }
         }
         DynamicIslandExpandedRegion(.bottom) {
-          VStack(spacing: 8) {
-            ZoneStrip(zone: state.zone, live: state.bpm != nil)
-            WorkoutButton(state: state)
-          }
+          ZoneStrip(zone: state.zone, live: state.bpm != nil)
         }
       } compactLeading: {
         Image(systemName: "heart.fill").foregroundStyle(state.bpm == nil ? .gray : Color.zone(state.zone))
@@ -60,29 +55,15 @@ private struct LockScreenView: View {
       HStack(alignment: .center) {
         BPMLabel(state: state, size: 44)
         Spacer()
-        VStack(alignment: .trailing, spacing: 2) {
-          if let start = state.workoutStartedAt {
-            Text(state.sportTitle?.uppercased() ?? "WORKOUT")
-              .font(.caption2.weight(.bold))
-              .foregroundStyle(Color.spliceAccent)
-            Text(start, style: .timer)
-              .font(.title2.weight(.semibold))
-              .monospacedDigit()
-              .multilineTextAlignment(.trailing)
-            if state.distanceMeters > 0 {
-              Text(String(format: "%.2f km", state.distanceMeters / 1000))
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            }
-          } else if let status = state.status {
-            Text(status).font(.caption).foregroundStyle(Color.stravaOrange)
-          } else if !state.connected {
-            Text("Band not streaming").font(.caption).foregroundStyle(.secondary)
-          }
+        if state.bpm != nil {
+          Text("Zone \(state.zone + 1) · \(ZonePalette.names[state.zone])")
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(Color.zone(state.zone))
+        } else {
+          Text("Band not streaming").font(.caption).foregroundStyle(.secondary)
         }
       }
       ZoneStrip(zone: state.zone, live: state.bpm != nil)
-      WorkoutButton(state: state)
     }
     .padding(16)
     .foregroundStyle(.white)
@@ -118,28 +99,6 @@ private struct ZoneStrip: View {
           .fill(Color.zone(i).opacity(live && i == zone ? 1 : 0.25))
           .frame(height: live && i == zone ? 7 : 4)
       }
-    }
-  }
-}
-
-private struct WorkoutButton: View {
-  let state: SpliceActivityAttributes.ContentState
-
-  var body: some View {
-    if state.workoutStartedAt != nil {
-      Button(intent: EndWorkoutIntent()) {
-        Label("Finish & upload to Strava", systemImage: "stop.fill")
-          .font(.caption.weight(.semibold))
-          .frame(maxWidth: .infinity)
-      }
-      .tint(.red)
-    } else {
-      Button(intent: StartWorkoutIntent()) {
-        Label("Start \(state.sportTitle ?? "workout")", systemImage: "play.fill")
-          .font(.caption.weight(.semibold))
-          .frame(maxWidth: .infinity)
-      }
-      .tint(Color.spliceAccent)
     }
   }
 }

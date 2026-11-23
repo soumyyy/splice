@@ -2,7 +2,7 @@ import ActivityKit
 import Foundation
 import os
 
-/// Keeps one Live Activity alive that mirrors heart rate and workout state.
+/// Keeps one Live Activity alive that mirrors the live heart rate.
 @MainActor
 final class LiveActivityController {
   private var activity: Activity<SpliceActivityAttributes>?
@@ -17,8 +17,6 @@ final class LiveActivityController {
       Task { await extra.end(nil, dismissalPolicy: .immediate) }
     }
   }
-
-  var isRunning: Bool { activity?.activityState == .active }
 
   /// Requests a Live Activity. iOS only allows this while the app is in the foreground.
   func start(maxHeartRate: Int, state: SpliceActivityAttributes.ContentState) {
@@ -37,15 +35,12 @@ final class LiveActivityController {
     }
   }
 
-  /// Pushes a new state, throttled to keep within iOS update budgets.
-  /// Heart rate refreshes every 2 s; workout and connection changes go out immediately.
+  /// Pushes a new state, throttled to one heart-rate update every 2 s; connection changes go out at once.
   func update(_ state: SpliceActivityAttributes.ContentState, force: Bool = false) {
     guard let activity, activity.activityState == .active else { return }
-    let structural = lastPushed.map {
-      $0.connected != state.connected || $0.workoutStartedAt != state.workoutStartedAt || $0.status != state.status
-    } ?? true
+    let connectionChanged = lastPushed?.connected != state.connected
     let elapsed = Date().timeIntervalSince(lastPushedAt)
-    guard force || structural || (state != lastPushed && elapsed >= 2) else { return }
+    guard force || connectionChanged || (state != lastPushed && elapsed >= 2) else { return }
     lastPushed = state
     lastPushedAt = Date()
     Task {
@@ -53,11 +48,10 @@ final class LiveActivityController {
     }
   }
 
-  func end(final state: SpliceActivityAttributes.ContentState? = nil) {
+  func end() {
     guard let activity else { return }
     self.activity = nil
-    Task {
-      await activity.end(state.map { .init(state: $0, staleDate: nil) }, dismissalPolicy: .after(Date().addingTimeInterval(15 * 60)))
-    }
+    lastPushed = nil
+    Task { await activity.end(nil, dismissalPolicy: .immediate) }
   }
 }

@@ -10,7 +10,6 @@ extension Color {
   }
 
   static let spliceAccent = Color(hex: 0xFF4D3D)
-  static let stravaOrange = Color(hex: 0xFC4C02)
 
   static func zone(_ index: Int) -> Color {
     Color(hex: ZonePalette.hex[max(0, min(4, index))])
