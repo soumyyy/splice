@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A26904CA8EB29EA426DAD7E /* SharedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4B661EDC036510B67640E /* SharedStyle.swift */; };
+		1F9430F2AA83D0D626345ED0 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF33BFFBA2A0C647F8F295 /* HistoryView.swift */; };
+		3D2404E3AFBA4F274AC38A3C /* SpliceWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CC296F4C7D20E02377245781 /* SpliceWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		408D9E2A68632E8C612A843B /* SpliceCore in Frameworks */ = {isa = PBXBuildFile; productRef = B7CF66E0A9DD89D5866F0AC3 /* SpliceCore */; };
+		498074005BEF676791B3BFF2 /* SpliceActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */; };
+		4B5AD7620DA471FEAF4429D7 /* SpliceActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */; };
+		5DB260D9573242C873B31340 /* SpliceLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E350FD3D0EA9DC160B96A41 /* SpliceLiveActivity.swift */; };
+		6A8EE9B5E45EEE0D6EC28DFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954D4812D6DA6F9081BF293A /* Assets.xcassets */; };
+		7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B494A663F2F1AA78519FD /* AppModel.swift */; };
+		73A96DCE1D3FCA3657CA77BA /* StravaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1BD2A5A6979A5BBB9633F0 /* StravaAuth.swift */; };
+		811C8805C09FB33AE02C28B9 /* LocationRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCEE05E4481722A560120AB /* LocationRecorder.swift */; };
+		8198FE9D2EBF7D8BF64E29C9 /* WorkoutStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FF1F979C219ED03661910D /* WorkoutStore.swift */; };
+		85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C686573DD33A4B7B91245 /* BandClient.swift */; };
+		875A6F008F593324E6DE5EED /* StravaUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682B788995C7FEBC49088309 /* StravaUploader.swift */; };
+		915A4DDC72402AEA6693937C /* SharedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4B661EDC036510B67640E /* SharedStyle.swift */; };
+		9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFF704DB06241893FC9512 /* LiveActivityController.swift */; };
+		B4A6A01BBE089AD4E7F37829 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B221D339F8527ADF94FE7C5 /* RootView.swift */; };
+		E363044B1E23DB18C730EBB6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9857ABB8412E92A30E6E30A8 /* Theme.swift */; };
+		F2C64D2F21F8BB7F74BF7EE6 /* SpliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A25A8BD553442484C164F9 /* SpliceApp.swift */; };
+		F929BB970B6707A585F1E5C3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C15358DE8C9D7BA2EA1CFB62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F5E7DE36BF655F8234BDA4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7767E8686C2F12187EC73F3;
+			remoteInfo = SpliceWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB3B90C1A74C086D79635923 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3D2404E3AFBA4F274AC38A3C /* SpliceWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		076C686573DD33A4B7B91245 /* BandClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandClient.swift; sourceTree = "<group>"; };
+		23FF1F979C219ED03661910D /* WorkoutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStore.swift; sourceTree = "<group>"; };
+		2B221D339F8527ADF94FE7C5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2E350FD3D0EA9DC160B96A41 /* SpliceLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceLiveActivity.swift; sourceTree = "<group>"; };
+		3C1BD2A5A6979A5BBB9633F0 /* StravaAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaAuth.swift; sourceTree = "<group>"; };
+		48878C26454D42408892FAA2 /* SpliceCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SpliceCore; path = SpliceCore; sourceTree = SOURCE_ROOT; };
+		54E4B661EDC036510B67640E /* SharedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStyle.swift; sourceTree = "<group>"; };
+		6197A35DA7CB16CAF7ED944B /* Splice.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Splice.xcconfig; sourceTree = "<group>"; };
+		64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceActivity.swift; sourceTree = "<group>"; };
+		682B788995C7FEBC49088309 /* StravaUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaUploader.swift; sourceTree = "<group>"; };
+		7F15304898A6EAE15BDCA897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		87A25A8BD553442484C164F9 /* SpliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceApp.swift; sourceTree = "<group>"; };
+		954D4812D6DA6F9081BF293A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9857ABB8412E92A30E6E30A8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9BCF33BFFBA2A0C647F8F295 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		A0DA923BED62258075DF8A49 /* Splice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C7DC31515F2674AE14A0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CC296F4C7D20E02377245781 /* SpliceWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SpliceWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE8B494A663F2F1AA78519FD /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		DFCEE05E4481722A560120AB /* LocationRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRecorder.swift; sourceTree = "<group>"; };
+		EEFFF704DB06241893FC9512 /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D981FC4ACA526BCE3660C69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408D9E2A68632E8C612A843B /* SpliceCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C9FBEE4235617EBEEAA10A6 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				EEFFF704DB06241893FC9512 /* LiveActivityController.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		1C8540CA4EF267E0DF74BE04 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				DFCEE05E4481722A560120AB /* LocationRecorder.swift */,
+				23FF1F979C219ED03661910D /* WorkoutStore.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		21D05F0B0B585C93C9F9B3A6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				54E4B661EDC036510B67640E /* SharedStyle.swift */,
+				64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		453A29A07E1F8188306F051D /* Splice */ = {
+			isa = PBXGroup;
+			children = (
+				A04638A898873BFD28FFBE57 /* App */,
+				62847EAF039E4765FBE0B107 /* Band */,
+				0C9FBEE4235617EBEEAA10A6 /* LiveActivity */,
+				AB5ECF7EA3F2FFB1D2CC85C5 /* Resources */,
+				C9E8316BAFEA85A42549B1CF /* Strava */,
+				82640C13D67699CC859DB38E /* UI */,
+				1C8540CA4EF267E0DF74BE04 /* Workout */,
+			);
+			path = Splice;
+			sourceTree = "<group>";
+		};
+		62847EAF039E4765FBE0B107 /* Band */ = {
+			isa = PBXGroup;
+			children = (
+				076C686573DD33A4B7B91245 /* BandClient.swift */,
+			);
+			path = Band;
+			sourceTree = "<group>";
+		};
+		6316ED047D986DC60D3D372B /* SpliceWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				7F15304898A6EAE15BDCA897 /* Info.plist */,
+				2E350FD3D0EA9DC160B96A41 /* SpliceLiveActivity.swift */,
+			);
+			path = SpliceWidgets;
+			sourceTree = "<group>";
+		};
+		8190C30B568D4AC6A46C8026 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				48878C26454D42408892FAA2 /* SpliceCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		82640C13D67699CC859DB38E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF33BFFBA2A0C647F8F295 /* HistoryView.swift */,
+				2B221D339F8527ADF94FE7C5 /* RootView.swift */,
+				A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */,
+				9857ABB8412E92A30E6E30A8 /* Theme.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A04638A898873BFD28FFBE57 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DE8B494A663F2F1AA78519FD /* AppModel.swift */,
+				87A25A8BD553442484C164F9 /* SpliceApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A778FD2D5EF94EC041BC2403 = {
+			isa = PBXGroup;
+			children = (
+				C533C8488119CBBD92E1AECD /* Config */,
+				8190C30B568D4AC6A46C8026 /* Packages */,
+				21D05F0B0B585C93C9F9B3A6 /* Shared */,
+				453A29A07E1F8188306F051D /* Splice */,
+				6316ED047D986DC60D3D372B /* SpliceWidgets */,
+				C32028007B592230C12E3E39 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB5ECF7EA3F2FFB1D2CC85C5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				954D4812D6DA6F9081BF293A /* Assets.xcassets */,
+				A3C7DC31515F2674AE14A0DA /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C32028007B592230C12E3E39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0DA923BED62258075DF8A49 /* Splice.app */,
+				CC296F4C7D20E02377245781 /* SpliceWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C533C8488119CBBD92E1AECD /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6197A35DA7CB16CAF7ED944B /* Splice.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C9E8316BAFEA85A42549B1CF /* Strava */ = {
+			isa = PBXGroup;
+			children = (
+				3C1BD2A5A6979A5BBB9633F0 /* StravaAuth.swift */,
+				682B788995C7FEBC49088309 /* StravaUploader.swift */,
+			);
+			path = Strava;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD679C491F8DE6257BBEA0AF /* Splice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D41D1E1F3D7ACDFFFB031F19 /* Build configuration list for PBXNativeTarget "Splice" */;
+			buildPhases = (
+				D23F8E2A5B85D5ACA0A26C79 /* Sources */,
+				3B88BE890EB29E9127988569 /* Resources */,
+				8D981FC4ACA526BCE3660C69 /* Frameworks */,
+				DB3B90C1A74C086D79635923 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AF900B83995F60A1E7744B9 /* PBXTargetDependency */,
+			);
+			name = Splice;
+			packageProductDependencies = (
+				B7CF66E0A9DD89D5866F0AC3 /* SpliceCore */,
+			);
+			productName = Splice;
+			productReference = A0DA923BED62258075DF8A49 /* Splice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E7767E8686C2F12187EC73F3 /* SpliceWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C0B2314CDA7427E96303F6C /* Build configuration list for PBXNativeTarget "SpliceWidgets" */;
+			buildPhases = (
+				A1D6654FFEF207B42BEF53F1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpliceWidgets;
+			packageProductDependencies = (
+			);
+			productName = SpliceWidgets;
+			productReference = CC296F4C7D20E02377245781 /* SpliceWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F5E7DE36BF655F8234BDA4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					DD679C491F8DE6257BBEA0AF = {
+						DevelopmentTeam = 4W769MPDJ6;
+						ProvisioningStyle = Automatic;
+					};
+					E7767E8686C2F12187EC73F3 = {
+						DevelopmentTeam = 4W769MPDJ6;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4504855F91B048787D50A390 /* Build configuration list for PBXProject "Splice" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A778FD2D5EF94EC041BC2403;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9A67329612F0FA5275EACADA /* XCLocalSwiftPackageReference "SpliceCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C32028007B592230C12E3E39 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD679C491F8DE6257BBEA0AF /* Splice */,
+				E7767E8686C2F12187EC73F3 /* SpliceWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B88BE890EB29E9127988569 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A8EE9B5E45EEE0D6EC28DFD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1D6654FFEF207B42BEF53F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				915A4DDC72402AEA6693937C /* SharedStyle.swift in Sources */,
+				4B5AD7620DA471FEAF4429D7 /* SpliceActivity.swift in Sources */,
+				5DB260D9573242C873B31340 /* SpliceLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D23F8E2A5B85D5ACA0A26C79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */,
+				85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */,
+				1F9430F2AA83D0D626345ED0 /* HistoryView.swift in Sources */,
+				9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */,
+				811C8805C09FB33AE02C28B9 /* LocationRecorder.swift in Sources */,
+				B4A6A01BBE089AD4E7F37829 /* RootView.swift in Sources */,
+				F929BB970B6707A585F1E5C3 /* SettingsView.swift in Sources */,
+				1A26904CA8EB29EA426DAD7E /* SharedStyle.swift in Sources */,
+				498074005BEF676791B3BFF2 /* SpliceActivity.swift in Sources */,
+				F2C64D2F21F8BB7F74BF7EE6 /* SpliceApp.swift in Sources */,
+				73A96DCE1D3FCA3657CA77BA /* StravaAuth.swift in Sources */,
+				875A6F008F593324E6DE5EED /* StravaUploader.swift in Sources */,
+				E363044B1E23DB18C730EBB6 /* Theme.swift in Sources */,
+				8198FE9D2EBF7D8BF64E29C9 /* WorkoutStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AF900B83995F60A1E7744B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7767E8686C2F12187EC73F3 /* SpliceWidgets */;
+			targetProxy = C15358DE8C9D7BA2EA1CFB62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		40F5A98F672EF334015224B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6197A35DA7CB16CAF7ED944B /* Splice.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4W769MPDJ6;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4AE93A72A44C18FC6B5FFBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Splice/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soumyamaheshwari.splice;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		55EDEFE0D38304F1D31B34BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SpliceWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soumyamaheshwari.splice.widgets;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		983FCF51D56F739BB47CCB11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6197A35DA7CB16CAF7ED944B /* Splice.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4W769MPDJ6;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BA360D5920AB35468C6C2AA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SpliceWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soumyamaheshwari.splice.widgets;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C66FE8E9FAEC038E40C968E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Splice/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.soumyamaheshwari.splice;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C0B2314CDA7427E96303F6C /* Build configuration list for PBXNativeTarget "SpliceWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA360D5920AB35468C6C2AA5 /* Debug */,
+				55EDEFE0D38304F1D31B34BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4504855F91B048787D50A390 /* Build configuration list for PBXProject "Splice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F5A98F672EF334015224B8 /* Debug */,
+				983FCF51D56F739BB47CCB11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D41D1E1F3D7ACDFFFB031F19 /* Build configuration list for PBXNativeTarget "Splice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C66FE8E9FAEC038E40C968E7 /* Debug */,
+				4AE93A72A44C18FC6B5FFBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		9A67329612F0FA5275EACADA /* XCLocalSwiftPackageReference "SpliceCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = SpliceCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7CF66E0A9DD89D5866F0AC3 /* SpliceCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SpliceCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1F5E7DE36BF655F8234BDA4B /* Project object */;
+}
