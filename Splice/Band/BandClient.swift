@@ -17,9 +17,29 @@ final class BandClient: NSObject {
   }
 
   private(set) var status: Status = .searching {
-    didSet { if status != oldValue { debugTrace("band status \(status)") } }
+    didSet {
+      guard status != oldValue else { return }
+      debugTrace("band status \(status)")
+      if status == .streaming { searchTimedOut = false }
+    }
   }
+
+  /// True once a band has connected on this phone; Splice reconnects to it automatically.
+  private(set) var hasSavedBand = UserDefaults.standard.string(forKey: "splice.band.identifier") != nil
+
+  /// Set when connecting has taken longer than expected, so the UI can offer help.
+  private(set) var searchTimedOut = false
+  /// The name the band advertises over Bluetooth, e.g. "WHOOP 5B00233988". Strava lists it by this name.
   private(set) var bandName: String?
+
+  /// Friendly name shown in the app.
+  var displayName: String { "WHOOP 5" }
+
+  /// The serial part of the Bluetooth name, e.g. "5B00233988".
+  var serial: String? {
+    guard let bandName, bandName.hasPrefix("WHOOP ") else { return nil }
+    return String(bandName.dropFirst("WHOOP ".count))
+  }
   private(set) var batteryPercent: Int?
   private(set) var lastReadingAt: Date?
 
@@ -63,16 +83,41 @@ final class BandClient: NSObject {
     }
   }
 
-  var hasSavedBand: Bool { UserDefaults.standard.string(forKey: savedBandKey) != nil }
+  @ObservationIgnored private var timeoutTask: Task<Void, Never>?
+
+  /// Tries to reach the band right away, e.g. when the app opens. Safe to call any time.
+  func reconnectNow() {
+    guard central.state == .poweredOn, status != .streaming else { return }
+    if let band, band.state == .connecting {
+      // Restart a stale pending connection so the attempt is fresh.
+      central.cancelPeripheralConnection(band)
+      central.connect(band)
+    } else {
+      beginSearch()
+    }
+    startTimeout()
+  }
+
+  private func startTimeout() {
+    searchTimedOut = false
+    timeoutTask?.cancel()
+    timeoutTask = Task { [weak self] in
+      try? await Task.sleep(for: .seconds(15))
+      guard let self, !Task.isCancelled, self.status != .streaming else { return }
+      self.searchTimedOut = true
+    }
+  }
 
   /// Forget the paired band and look for a new one.
   func forgetBand() {
     if let band { central.cancelPeripheralConnection(band) }
     UserDefaults.standard.removeObject(forKey: savedBandKey)
+    hasSavedBand = false
     band = nil
     bandName = nil
     batteryPercent = nil
     beginSearch()
+    startTimeout()
   }
 
   // MARK: - Connection
@@ -195,6 +240,7 @@ extension BandClient: CBCentralManagerDelegate {
   nonisolated func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     MainActor.assumeIsolated {
       UserDefaults.standard.set(peripheral.identifier.uuidString, forKey: savedBandKey)
+      hasSavedBand = true
       bandName = peripheral.name
       status = .connected
       peripheral.discoverServices([serviceID, batteryServiceID])
