@@ -7,6 +7,7 @@ final class AppModel {
   static let shared = AppModel()
 
   let band = BandClient()
+  let history = HistoryStore()
   private(set) var bpm: Int?
   private(set) var recent: [HeartRateSample] = []
 
@@ -51,6 +52,7 @@ final class AppModel {
 
   private func handle(_ value: Int, at time: Date) {
     bpm = value
+    history.record(bpm: value, at: time)
     recent.append(HeartRateSample(time: time, bpm: value))
     recent.removeAll { time.timeIntervalSince($0.time) > 300 }
     refreshLiveActivity()
@@ -62,9 +64,25 @@ final class AppModel {
     liveActivity.start(maxHeartRate: maxHeartRate, state: liveState())
   }
 
+  func appWentToBackground() {
+    history.flush()
+  }
+
+  /// Shown when the app opens and the band isn't streaming yet.
+  var showPairing = false
+  @ObservationIgnored private var pairingCheck: Task<Void, Never>?
+
   func appBecameActive() {
+    band.reconnectNow()
     ensureLiveActivity()
     refreshLiveActivity(force: true)
+    // Give a normal reconnect a moment before prompting, so the sheet doesn't flash.
+    pairingCheck?.cancel()
+    pairingCheck = Task {
+      try? await Task.sleep(for: .seconds(2))
+      guard !Task.isCancelled, isStreaming, band.status != .streaming else { return }
+      showPairing = true
+    }
   }
 
   private func refreshLiveActivity(force: Bool = false) {

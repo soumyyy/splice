@@ -29,7 +29,13 @@ struct SettingsView: View {
         }
 
         Section("Band") {
-          LabeledContent("Name", value: model.band.bandName ?? "Not paired")
+          LabeledContent("Band", value: model.band.hasSavedBand ? model.band.displayName : "Not paired")
+          if let serial = model.band.serial {
+            LabeledContent("Serial", value: serial)
+          }
+          if let name = model.band.bandName {
+            LabeledContent("Name in Strava", value: name)
+          }
           if let battery = model.band.batteryPercent {
             LabeledContent("Battery", value: "\(battery)%")
           }

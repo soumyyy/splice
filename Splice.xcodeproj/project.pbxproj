@@ -16,12 +16,18 @@
 		6A8EE9B5E45EEE0D6EC28DFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954D4812D6DA6F9081BF293A /* Assets.xcassets */; };
 		7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B494A663F2F1AA78519FD /* AppModel.swift */; };
 		85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C686573DD33A4B7B91245 /* BandClient.swift */; };
+		8F1A3231552AC0254C7F946E /* LiveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8DAD5BDB4593A215015242 /* LiveCard.swift */; };
 		915A4DDC72402AEA6693937C /* SharedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4B661EDC036510B67640E /* SharedStyle.swift */; };
+		92CA6EE7EEDC4284C19311F2 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = B769533515B3BDAF21A3B4E7 /* Components.swift */; };
 		9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFF704DB06241893FC9512 /* LiveActivityController.swift */; };
-		B4A6A01BBE089AD4E7F37829 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B221D339F8527ADF94FE7C5 /* RootView.swift */; };
-		E363044B1E23DB18C730EBB6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9857ABB8412E92A30E6E30A8 /* Theme.swift */; };
+		AFF76759017A78DBE6ACF891 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB227C7D312EC77FD8AF5 /* PairingSheet.swift */; };
+		DB07A3B82CEC4649B787E84F /* BandCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A681C4C32B5360DF89C63E37 /* BandCard.swift */; };
+		DF2E713A5BAC649E0D7C9194 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDC922782433063FA6E6FF /* HistoryStore.swift */; };
+		EC88B885564F128B7E33D5AD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294D4B055C0D8C947C7CBF6 /* HomeView.swift */; };
+		ED55BF19D34F41809A051E01 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */; };
+		F25C18E171A9879602052887 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DAA5CFCB3973A009E19510 /* Theme.swift */; };
 		F2C64D2F21F8BB7F74BF7EE6 /* SpliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A25A8BD553442484C164F9 /* SpliceApp.swift */; };
-		F929BB970B6707A585F1E5C3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */; };
+		F34A06FD2E6E77F1C8905AFC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456802D37CDE5A1016F6F690 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,22 +55,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02DAA5CFCB3973A009E19510 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		076C686573DD33A4B7B91245 /* BandClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandClient.swift; sourceTree = "<group>"; };
-		2B221D339F8527ADF94FE7C5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2E350FD3D0EA9DC160B96A41 /* SpliceLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceLiveActivity.swift; sourceTree = "<group>"; };
+		3FBDC922782433063FA6E6FF /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
+		456802D37CDE5A1016F6F690 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		48878C26454D42408892FAA2 /* SpliceCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SpliceCore; path = SpliceCore; sourceTree = SOURCE_ROOT; };
 		54E4B661EDC036510B67640E /* SharedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStyle.swift; sourceTree = "<group>"; };
 		64FA99DFB5D9DC71E137AC54 /* SpliceActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceActivity.swift; sourceTree = "<group>"; };
 		7F15304898A6EAE15BDCA897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		87A25A8BD553442484C164F9 /* SpliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpliceApp.swift; sourceTree = "<group>"; };
 		954D4812D6DA6F9081BF293A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9857ABB8412E92A30E6E30A8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A0DA923BED62258075DF8A49 /* Splice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C7DC31515F2674AE14A0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A681C4C32B5360DF89C63E37 /* BandCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandCard.swift; sourceTree = "<group>"; };
+		AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
+		B769533515B3BDAF21A3B4E7 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		BE8DAD5BDB4593A215015242 /* LiveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCard.swift; sourceTree = "<group>"; };
 		CC296F4C7D20E02377245781 /* SpliceWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SpliceWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8B494A663F2F1AA78519FD /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		E4DDB227C7D312EC77FD8AF5 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
 		EEFFF704DB06241893FC9512 /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+		F294D4B055C0D8C947C7CBF6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +99,22 @@
 			path = LiveActivity;
 			sourceTree = "<group>";
 		};
+		10565394C652E64E5BC9C58C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				456802D37CDE5A1016F6F690 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1E3FFECFC693A358544206BB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				3FBDC922782433063FA6E6FF /* HistoryStore.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		21D05F0B0B585C93C9F9B3A6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +129,7 @@
 			children = (
 				A04638A898873BFD28FFBE57 /* App */,
 				62847EAF039E4765FBE0B107 /* Band */,
+				1E3FFECFC693A358544206BB /* History */,
 				0C9FBEE4235617EBEEAA10A6 /* LiveActivity */,
 				AB5ECF7EA3F2FFB1D2CC85C5 /* Resources */,
 				82640C13D67699CC859DB38E /* UI */,
@@ -136,11 +165,20 @@
 		82640C13D67699CC859DB38E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2B221D339F8527ADF94FE7C5 /* RootView.swift */,
-				A646C8E2BD810B3A8D609AE4 /* SettingsView.swift */,
-				9857ABB8412E92A30E6E30A8 /* Theme.swift */,
+				FE3CCEADEA1F29FE9F34971C /* Components */,
+				DA6BE9B4DB0B89DE7BE9E5D1 /* Home */,
+				987740CF020B950D499E6E08 /* Pairing */,
+				10565394C652E64E5BC9C58C /* Settings */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		987740CF020B950D499E6E08 /* Pairing */ = {
+			isa = PBXGroup;
+			children = (
+				E4DDB227C7D312EC77FD8AF5 /* PairingSheet.swift */,
+			);
+			path = Pairing;
 			sourceTree = "<group>";
 		};
 		A04638A898873BFD28FFBE57 /* App */ = {
@@ -179,6 +217,26 @@
 				CC296F4C7D20E02377245781 /* SpliceWidgets.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DA6BE9B4DB0B89DE7BE9E5D1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A681C4C32B5360DF89C63E37 /* BandCard.swift */,
+				AC39FB99A7A603CA3BEFC524 /* HistoryCard.swift */,
+				F294D4B055C0D8C947C7CBF6 /* HomeView.swift */,
+				BE8DAD5BDB4593A215015242 /* LiveCard.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FE3CCEADEA1F29FE9F34971C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B769533515B3BDAF21A3B4E7 /* Components.swift */,
+				02DAA5CFCB3973A009E19510 /* Theme.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,14 +350,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7188102C1BC57D1A4DB14AC5 /* AppModel.swift in Sources */,
+				DB07A3B82CEC4649B787E84F /* BandCard.swift in Sources */,
 				85642D947FE9B5FC37961AA9 /* BandClient.swift in Sources */,
+				92CA6EE7EEDC4284C19311F2 /* Components.swift in Sources */,
+				ED55BF19D34F41809A051E01 /* HistoryCard.swift in Sources */,
+				DF2E713A5BAC649E0D7C9194 /* HistoryStore.swift in Sources */,
+				EC88B885564F128B7E33D5AD /* HomeView.swift in Sources */,
 				9E42E9994F4FFA4AE93FC83E /* LiveActivityController.swift in Sources */,
-				B4A6A01BBE089AD4E7F37829 /* RootView.swift in Sources */,
-				F929BB970B6707A585F1E5C3 /* SettingsView.swift in Sources */,
+				8F1A3231552AC0254C7F946E /* LiveCard.swift in Sources */,
+				AFF76759017A78DBE6ACF891 /* PairingSheet.swift in Sources */,
+				F34A06FD2E6E77F1C8905AFC /* SettingsView.swift in Sources */,
 				1A26904CA8EB29EA426DAD7E /* SharedStyle.swift in Sources */,
 				498074005BEF676791B3BFF2 /* SpliceActivity.swift in Sources */,
 				F2C64D2F21F8BB7F74BF7EE6 /* SpliceApp.swift in Sources */,
-				E363044B1E23DB18C730EBB6 /* Theme.swift in Sources */,
+				F25C18E171A9879602052887 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

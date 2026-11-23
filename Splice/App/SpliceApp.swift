@@ -8,13 +8,17 @@ struct SpliceApp: App {
 
   var body: some Scene {
     WindowGroup {
-      RootView()
+      HomeView()
         .environment(model)
         .preferredColorScheme(.dark)
         .tint(.spliceAccent)
     }
     .onChange(of: scenePhase) { _, phase in
-      if phase == .active { model.appBecameActive() }
+      switch phase {
+      case .active: model.appBecameActive()
+      case .background: model.appWentToBackground()
+      default: break
+      }
     }
   }
 }

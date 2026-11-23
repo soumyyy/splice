@@ -36,6 +36,14 @@ public struct HeartRateBucket: Sendable, Equatable, Identifiable {
   public let segment: Int
 
   public var id: Date { start }
+
+  public init(start: Date, min: Int, max: Int, average: Double, segment: Int) {
+    self.start = start
+    self.min = min
+    self.max = max
+    self.average = average
+    self.segment = segment
+  }
 }
 
 public struct HeartRateStats: Sendable, Equatable {
@@ -45,6 +53,13 @@ public struct HeartRateStats: Sendable, Equatable {
   /// Minutes spent in each of the five zones, judged by each minute's average.
   public let minutesInZones: [Int]
   public var totalMinutes: Int { minutesInZones.reduce(0, +) }
+
+  public init(low: Int, average: Int, high: Int, minutesInZones: [Int]) {
+    self.low = low
+    self.average = average
+    self.high = high
+    self.minutesInZones = minutesInZones
+  }
 }
 
 /// Rolling per-minute heart-rate history. Small enough to keep a week on the phone (~10k entries).
